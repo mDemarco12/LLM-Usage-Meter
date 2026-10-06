@@ -1,0 +1,48 @@
+{
+  "name": "claude-usage-meter",
+  "displayName": "Claude Usage Meter",
+  "description": "Shows your Claude Code 5-hour usage as a colour-coded box in the Claude sidebar and status bar.",
+  "version": "0.0.1",
+  "publisher": "local",
+  "engines": { "vscode": "^1.94.0" },
+  "categories": ["Other"],
+  "main": "./extension.js",
+  "activationEvents": ["onStartupFinished"],
+  "extensionDependencies": ["anthropic.claude-code"],
+  "contributes": {
+    "views": {
+      "claude-sidebar-secondary": [
+        {
+          "type": "webview",
+          "id": "usageMeter.secondary",
+          "name": "Usage",
+          "when": "!claude-code:doesNotSupportSecondarySidebar"
+        }
+      ],
+      "claude-sidebar": [
+        {
+          "type": "webview",
+          "id": "usageMeter.primary",
+          "name": "Usage",
+          "when": "claude-code:doesNotSupportSecondarySidebar"
+        }
+      ]
+    },
+    "commands": [
+      { "command": "usageMeter.refresh", "title": "Usage Meter: Refresh" },
+      { "command": "usageMeter.simulate", "title": "Usage Meter: Simulate Percentage" },
+      { "command": "usageMeter.focus", "title": "Usage Meter: Show Meter" }
+    ],
+    "configuration": {
+      "title": "Claude Usage Meter",
+      "properties": {
+        "usageMeter.refreshMinutes": {
+          "type": "number",
+          "default": 5,
+          "minimum": 1,
+          "description": "How often to re-read usage from Claude Code, in minutes."
+        }
+      }
+    }
+  }
+}

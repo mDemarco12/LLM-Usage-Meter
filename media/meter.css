@@ -1,0 +1,28 @@
+body { padding: 8px 12px; margin: 0; color: var(--vscode-foreground); font-family: var(--vscode-font-family); }
+#root { display: flex; align-items: center; gap: 12px; cursor: pointer; outline: none; }
+#root:focus-visible .box { outline: 1px solid var(--vscode-focusBorder); outline-offset: 2px; }
+.box {
+  position: relative; width: 56px; height: 56px; flex: none; box-sizing: border-box;
+  border: 2px solid var(--vscode-foreground); border-radius: 12px; overflow: hidden;
+  background: var(--vscode-editor-background);
+}
+.fill { position: absolute; left: 0; right: 0; bottom: 0; height: 0; background: #2ea043; transition: height .4s, background-color .4s; }
+.line { position: absolute; left: 0; right: 0; height: 0; border-top: 2px dotted var(--vscode-foreground); opacity: .8; }
+.l50 { bottom: 50%; }
+.l80 { bottom: 80%; }
+.num {
+  position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+  font-size: 17px; font-weight: 700; color: #fff;
+  text-shadow: 0 0 2px #000, 0 0 2px #000, 0 0 3px #000;
+}
+.box.green .fill { background: #2ea043; }
+.box.yellow .fill { background: #d4a72c; }
+.box.red .fill { background: #e5484d; }
+.box.black { border-color: var(--vscode-foreground); }
+.box.black .fill { background: #000; }
+.box.black .line { border-top-color: #888; }
+.box.none .fill { height: 0; }
+.box.none .num { color: var(--vscode-descriptionForeground); text-shadow: none; }
+.label { font-size: 12px; opacity: .8; }
+.detail { font-size: 13px; font-weight: 600; margin-top: 2px; }
+.detail.muted { font-weight: 400; opacity: .7; }
